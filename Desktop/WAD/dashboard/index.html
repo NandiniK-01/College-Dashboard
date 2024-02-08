@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body
+        {
+          background-color: #F9EFDB;
+        }
+        .container
+        {
+            display: grid;
+            gap: 0.3em;
+            grid-template-columns:3fr 8fr;
+            grid-template-rows:none;
+           margin-left:0.2em ;
+           margin-right: 4rem;;
+        }
+        
+        .containers
+        {
+          width: 100%;
+          height: 1%;
+          margin-left: 16rem;
+          margin-right: 3rem;
+        }
+        .sidebar{
+          height: 100vh;
+          position:fixed;
+          width: 10rem;
+        }
+        .flex-column
+        {
+            height: 100vh;
+            width: 200px;
+            padding: 20px;
+        }
+        .flex-container
+        {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+        .flex-item
+        {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            background-color: #eee; 
+            
+        }
+        .card
+        {
+          justify-content: center; 
+            align-items: center;
+            width: 7rem;
+            height: 7rem;
+            padding-top: 2rem;
+        }
+        .card-img{
+            width: 2rem;
+            height: 2rem;
+        }
+        .small-red-contain {
+            width: 40px;
+            height: 8px;
+            background-color: red;
+            border-radius: 20px; /* Adjust this value to change the roundness of the borders */
+        }
+        .contain {
+            width: 140px;
+            height: 8px;
+            background-color: #EBD9B4;
+            border-radius: 20px; /* Adjust this value to change the roundness of the borders */
+        }
+        .slidebar-flex{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+        .ggrid{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .examtop{
+            height: 10rem;
+            width:17rem;
+            /* background-color:grey ; */
+        }
+        .newstud{
+          height: 15rem;
+            width: 17rem;
+            /* background-color:grey ; */
+        }
+        table, th, td {
+  border: 1px solid black;
+}
+.script{
+  background-color: #EBD9B4;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+      
+
+
+    <div class="sidebar">
+    <div class="d-flex flex-column flex-shrink-0 p-3 " style="width: 230px; background-color: #9DBC98;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi pe-none me-2" width="40" height="30"><use xlink:href="#bootstrap"></use></svg>
+          <span class="fs-4">PVG COET</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+              Payments
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+              Noticeboard
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+              Taskboard
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+              Hostel
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+              Transport
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+              Attendance
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+              Leave
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+              Settings
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="data:image/jpeg;base64,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" alt="" width="38" height="32" class="rounded-circle me-2">
+            <strong>Admin</strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+</div>
+      <div class="containers">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+  
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="#" class="nav-link px-2 link-secondary">Pages</a></li>
+            <li><a href="#" class="nav-link px-2 link-body-emphasis">Author</a></li>
+            <li><a href="#" class="nav-link px-2 link-body-emphasis">University</a></li>
+            <li><a href="#" class="nav-link px-2 link-body-emphasis">Profile</a></li>
+          </ul>
+  
+          <form class="col-12 col-lg-auto mb-lg-0 me-lg-3" role="search">
+            <div class="input-group ">
+              <input type="text" class="form-control" placeholder="What you want to find " aria-label="Recipient's username" aria-describedby="basic-addon2">
+              
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Search</button>
+              </div>
+            </div>
+          </form>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+          </svg>
+          `
+          <div class="dropdown text-end">
+            
+            <ul class="dropdown-menu text-small">
+              <li><a class="dropdown-item" href="#">New project...</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+<br/><br/>
+        <div class="flex-container">
+            <!-- <div class="flex-item"> -->
+          <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+            <img src="https://cdn-icons-png.flaticon.com/128/2058/2058414.png" style="height: 2rem; width: 2rem; "  class="card-img" alt="Professor">
+            <div class="card-body">
+              <p class="card-text">Payments </p>
+            </div>
+            
+          </div>
+          <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
+            <img src="https://cdn-icons-png.flaticon.com/128/3000/3000409.png" style="height: 2rem; width: 2rem; height: fit-content;"  class="card-img" alt="Contact">
+            <div class="card-body">
+              <p class="card-text">Noticeboard </p>
+            </div>
+            
+          </div>
+          <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
+            <img src="https://cdn-icons-png.flaticon.com/128/13864/13864070.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
+            <div class="card-body">
+              <p class="card-text">Taskboard </p>
+            </div>
+    
+          </div>
+          <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
+            <img src="https://cdn-icons-png.flaticon.com/128/9235/9235252.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Filemanager">
+            <div class="card-body">
+              <p class="card-text">Transport </p>
+            </div>
+          </div>
+          
+          <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
+            <img src="https://cdn-icons-png.flaticon.com/128/3619/3619368.png" style="height: 2rem; width: 2rem;" class="card-img-top" alt="Library">
+            <div class="card-body">
+              <p class="card-text">Hostel </p>
+            </div>
+          </div>
+            <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+              <img src="https://cdn-icons-png.flaticon.com/128/6611/6611895.png" style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
+              <div class="card-body">
+                <p class="card-text">Attendance </p>
+              </div>
+            </div>
+            
+          <!-- </div> -->
+          </div>
+     
+  <br>
+  <script type="text/javascript" style="background-color: #EBD9B4;">
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+
+      title:{
+      text: "Collection of Fees - per month"
+      },
+       data: [
+      {
+        type: "line",
+
+        dataPoints: [
+        { x: new Date(2012, 00, 1), y: 450 },
+        { x: new Date(2012, 01, 1), y: 414 },
+        { x: new Date(2012, 02, 1), y: 520 },
+        { x: new Date(2012, 03, 1), y: 460 },
+        { x: new Date(2012, 04, 1), y: 450 },
+        { x: new Date(2012, 05, 1), y: 500 },
+        { x: new Date(2012, 06, 1), y: 480 },
+        { x: new Date(2012, 07, 1), y: 480 },
+        { x: new Date(2012, 08, 1), y: 410 },
+        { x: new Date(2012, 09, 1), y: 500 },
+        { x: new Date(2012, 10, 1), y: 480 },
+        { x: new Date(2012, 11, 1), y: 510 }
+        ]
+      }
+      ]
+    });
+
+    chart.render();
+  }
+  </script>
+ <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js" style="background-color: #EBD9B4;"></script></head>
+
+  <div id="chartContainer" style="height: 300px; width: 100%; background-color: #EBD9B4;">
+  </div>
+
+<br>
+<div class="slidebar-flex">
+  
+ <span>Fees
+      
+<div class="contain"><div class="small-red-contain" style=" background-color: red;"></div></div>
+35%
+</span>
+<span>Donation
+<div class="contain"><div class="small-red-contain" style=" background-color: green; width: 80px;"></div></div>
+67%
+</span>
+<span>Income
+<div class="contain"><div class="small-red-contain" style=" background-color: pink; width: 110px;"></div></div>
+87%
+</span>
+<span>Expense
+<div class="contain"><div class="small-red-contain" style=" background-color: purple; width: 56px;"></div></div>
+42%
+</span>
+      </div>
+      <br>
+<div class="ggrid">
+  <div class="examtop" style="background-color: #EBD9B4;">EXAM TOPPERS
+    <br>
+    <table>
+      <tr>
+        <th>Roll No.</th>
+        <th>Name</th>
+        <th>Marks</th>
+        <th>%Age</th>
+      </tr>
+      <tr>
+        <td>41</td>
+        <td>Blair</td>
+        <td>199</td>
+        <td>99</td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td>Dan</td>
+        <td>197</td>
+        <td>98</td>
+      </tr>
+      <tr>
+        <td>39</td>
+        <td>Serena</td>
+        <td>197</td>
+        <td>98</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Nate</td>
+        <td>194</td>
+        <td>97</td>
+      </tr>
+      </table>
+  </div>
+  <div class="newstud">NEW STUDENT LIST
+    <br>
+    <table>
+      <tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Branch</th>
+        <th>Date</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Vanessa</td>
+        <td>Mechanical</td>
+        <td>27/05/2016</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jenny</td>
+        <td>Computer</td>
+        <td>26/05/2018</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Andrew</td>
+        <td>Printing</td>
+        <td>21/05/2018</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Josie</td>
+        <td>Information Technology</td>
+        <td>20/04/2019</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Vedant</td>
+        <td>Printing</td>
+        <td>24/05/2017</td>
+      </tr>
+      </table>
+  </div>
+</div>      
+      
+  </div>
+
+
+
+</body>
+</html>
