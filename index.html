@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body
@@ -17,12 +18,13 @@
             grid-template-columns:3fr 8fr;
             grid-template-rows:none;
            margin-left:0.2em ;
-           margin-right: 4rem;;
+           margin-right: 4rem;
+           padding: 0px;
         }
         
         .containers
         {
-          width: 100%;
+          width: auto;
           height: 1%;
           margin-left: 16rem;
           margin-right: 3rem;
@@ -38,11 +40,10 @@
             width: 200px;
             padding: 20px;
         }
-        .flex-container
-        {
+        .flex-container {
           display: flex;
-          justify-content: space-between;
           align-items: flex-start;
+          gap: 5rem; /* Add this line to decrease the space between flex items */
         }
         .flex-item
         {
@@ -76,10 +77,13 @@
             background-color: #EBD9B4;
             border-radius: 20px; /* Adjust this value to change the roundness of the borders */
         }
-        .slidebar-flex{
+        .slidebar-flex {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
+          justify-content: space-around;
+          border: 2px solid black; /* Add border width */
+          border-radius: 4px;
         }
         .ggrid{
           display: grid;
@@ -95,11 +99,29 @@
             width: 17rem;
             /* background-color:grey ; */
         }
+        .px-2{
+            font-size: 1.3rem;
+        }
         table, th, td {
   border: 1px solid black;
 }
 .script{
   background-color: #EBD9B4;
+}
+
+.chart-container {
+  width: 80%;
+  max-width: 900px;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55vh;
+  margin: 0;
+}
+
+canvas {
+  border: 1px solid #ccc;
 }
     </style>
 </head>
@@ -112,7 +134,7 @@
     <div class="d-flex flex-column flex-shrink-0 p-3 " style="width: 230px; background-color: #9DBC98;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg class="bi pe-none me-2" width="40" height="30"><use xlink:href="#bootstrap"></use></svg>
-          <span class="fs-4">PVG COET</span>
+          <span class="fs-4" style="margin-top: 2.5rem;">PVG COET</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
@@ -188,12 +210,12 @@
       </div>
 </div>
       <div class="containers">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start fixed-top" style="background-color: #979082;">
           <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
             <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
           </a>
   
-          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 ">
             <li><a href="#" class="nav-link px-2 link-secondary">Pages</a></li>
             <li><a href="#" class="nav-link px-2 link-body-emphasis">Author</a></li>
             <li><a href="#" class="nav-link px-2 link-body-emphasis">University</a></li>
@@ -209,7 +231,7 @@
               </div>
             </div>
           </form>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="45" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
           </svg>
@@ -226,6 +248,7 @@
           </div>
         </div>
 <br/><br/>
+<br/>
         <div class="flex-container">
             <!-- <div class="flex-item"> -->
           <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
@@ -273,46 +296,44 @@
           </div>
      
   <br>
-  <script type="text/javascript" style="background-color: #EBD9B4;">
-  window.onload = function () {
-    var chart = new CanvasJS.Chart("chartContainer",
-    {
-
-      title:{
-      text: "Collection of Fees - per month"
-      },
-       data: [
-      {
-        type: "line",
-
-        dataPoints: [
-        { x: new Date(2012, 00, 1), y: 450 },
-        { x: new Date(2012, 01, 1), y: 414 },
-        { x: new Date(2012, 02, 1), y: 520 },
-        { x: new Date(2012, 03, 1), y: 460 },
-        { x: new Date(2012, 04, 1), y: 450 },
-        { x: new Date(2012, 05, 1), y: 500 },
-        { x: new Date(2012, 06, 1), y: 480 },
-        { x: new Date(2012, 07, 1), y: 480 },
-        { x: new Date(2012, 08, 1), y: 410 },
-        { x: new Date(2012, 09, 1), y: 500 },
-        { x: new Date(2012, 10, 1), y: 480 },
-        { x: new Date(2012, 11, 1), y: 510 }
-        ]
-      }
-      ]
-    });
-
-    chart.render();
-  }
-  </script>
- <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js" style="background-color: #EBD9B4;"></script></head>
-
-  <div id="chartContainer" style="height: 300px; width: 100%; background-color: #EBD9B4;">
+  <div class="chart-container">
+    <canvas id="feesChart" style="margin-left: 200px;"></canvas>
   </div>
-
-<br>
-<div class="slidebar-flex">
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Sample data for fees collection
+    const months = ["January", "February", "March", "April", "May", "June"];
+    const feesData = [500, 700, 600, 900, 800, 1000];
+  
+    // Get the canvas element
+    const canvas = document.getElementById("feesChart");
+    const ctx = canvas.getContext("2d");
+  
+    // Create the bar chart
+    const feesChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: months,
+        datasets: [{
+          label: "Fees Collection",
+          data: feesData,
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  });
+  </script>
+  <br/>
+<div class="slidebar-flex" >
   
  <span>Fees
       
@@ -331,85 +352,102 @@
 <div class="contain"><div class="small-red-contain" style=" background-color: purple; width: 56px;"></div></div>
 42%
 </span>
-      </div>
+</div>
       <br>
 <div class="ggrid">
-  <div class="examtop" style="background-color: #EBD9B4;">EXAM TOPPERS
-    <br>
-    <table>
-      <tr>
-        <th>Roll No.</th>
-        <th>Name</th>
-        <th>Marks</th>
-        <th>%Age</th>
-      </tr>
-      <tr>
-        <td>41</td>
-        <td>Blair</td>
-        <td>199</td>
-        <td>99</td>
-      </tr>
-      <tr>
-        <td>17</td>
-        <td>Dan</td>
-        <td>197</td>
-        <td>98</td>
-      </tr>
-      <tr>
-        <td>39</td>
-        <td>Serena</td>
-        <td>197</td>
-        <td>98</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>Nate</td>
-        <td>194</td>
-        <td>97</td>
-      </tr>
-      </table>
+  <div class="examtop" style="background-color: ">
+    <canvas id="examToppersTable"></canvas>
   </div>
-  <div class="newstud">NEW STUDENT LIST
-    <br>
-    <table>
-      <tr>
-        <th>No.</th>
-        <th>Name</th>
-        <th>Branch</th>
-        <th>Date</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Vanessa</td>
-        <td>Mechanical</td>
-        <td>27/05/2016</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jenny</td>
-        <td>Computer</td>
-        <td>26/05/2018</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Andrew</td>
-        <td>Printing</td>
-        <td>21/05/2018</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Josie</td>
-        <td>Information Technology</td>
-        <td>20/04/2019</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Vedant</td>
-        <td>Printing</td>
-        <td>24/05/2017</td>
-      </tr>
-      </table>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sample data for exam toppers
+      const toppersData = [
+        { rollNo: 41, name: "Blair", marks: 199, percentage: 99 },
+        { rollNo: 17, name: "Dan", marks: 197, percentage: 98 },
+        { rollNo: 39, name: "Serena", marks: 197, percentage: 98 },
+        { rollNo: 8, name: "Nate", marks: 194, percentage: 97 }
+      ];
+
+      // Get the canvas element
+      const canvas = document.getElementById("examToppersTable");
+      const ctx = canvas.getContext("2d");
+
+      // Set the canvas size
+      canvas.width = 400;
+      canvas.height = 200;
+
+      // Set the table style
+      ctx.fillStyle = "#c0c0ca";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Set the text style
+      ctx.font = "14px Arial";
+      ctx.fillStyle = "black";
+
+      // Draw the table headers
+      ctx.fillText("Roll No.", 20, 30);
+      ctx.fillText("Name", 100, 30);
+      ctx.fillText("Marks", 180, 30);
+      ctx.fillText("%Age", 260, 30);
+
+      // Draw the table rows
+      let y = 50;
+      toppersData.forEach((topper, index) => {
+        ctx.fillText(topper.rollNo, 20, y);
+        ctx.fillText(topper.name, 100, y);
+        ctx.fillText(topper.marks, 180, y);
+        ctx.fillText(topper.percentage, 260, y);
+        y += 20;
+      });
+    });
+  </script>
+  <div class="newstud">
+    <canvas id="newstudTable"></canvas>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sample data for exam toppers
+      const toppersData = [
+        { No: 1, name: "Vanessa", Branch: "Mechanical",Date: "27/05/2016" },
+        { No: 2, name: "Jenny", Branch: "Computer",Date: "26/05/2018" },
+        { No: 3, name: "Andrew", Branch: "Printing",Date: "21/05/2018" },
+        { No: 4, name: "Josie", Branch: "Information Technology",Date: "20/04/2019" },
+        { No: 5, name: "Vedant", Branch: "Printing",Date: "24/05/2017" }
+      ];
+
+      // Get the canvas element
+      const canvas = document.getElementById("newstudTable");
+      const ctx = canvas.getContext("2d");
+
+      // Set the canvas size
+      canvas.width = 400;
+      canvas.height = 200;
+
+      // Set the table style
+      ctx.fillStyle = "#c0c0ca";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Set the text style
+      ctx.font = "14px Arial";
+      ctx.fillStyle = "black";
+
+      // Draw the table headers
+      ctx.fillText("No.", 40, 20);
+      ctx.fillText("Name", 130, 20);
+      ctx.fillText("Branch", 210, 20);
+      ctx.fillText("Date", 290, 20);
+
+      // Draw the table rows
+      let y = 50;
+      toppersData.forEach((topper, index) => {
+        ctx.fillText(topper.rollNo, 40, y);
+        ctx.fillText(topper.name, 130, y);
+        ctx.fillText(topper.marks, 210, y);
+        ctx.fillText(topper.percentage, 290, y);
+        y += 30;
+      });
+    });
+  </script>
 </div>      
       
   </div>
