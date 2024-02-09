@@ -74,6 +74,7 @@
           border: 2px solid black; /* Add border width */
           border-radius: 4px;
         }
+
         .ggrid{
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -255,6 +256,20 @@ a.sidebar-link:hover {
   background-color: #e9ecef;
 }
 
+.charts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 1rem; /* Optional: Adds some space around the items */
+}
+.chart-container {
+  flex: 1; /* Optional: Each chart container will take up an equal amount of space */
+}
+@media (max-width: 800px) {
+  .charts {
+    flex-direction: column;
+  }
+}
     </style>
 </head>
 <body>
@@ -377,56 +392,68 @@ a.sidebar-link:hover {
                 </div>
               </nav>
       <br/><br/>
-      <br/>
-              <div class="flex-container">
-                  <!-- <div class="flex-item"> -->
-                <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
-                  <img src="https://cdn-icons-png.flaticon.com/128/2058/2058414.png" style="height: 2rem; width: 2rem; "  class="card-img" alt="Professor">
-                  <div class="card-body">
-                    <p class="card-text">Payments </p>
-                  </div>
-                  
-                </div>
-                <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
-                  <img src="https://cdn-icons-png.flaticon.com/128/3000/3000409.png" style="height: 2rem; width: 2rem; height: fit-content;"  class="card-img" alt="Contact">
-                  <div class="card-body">
-                    <p class="card-text">Noticeboard </p>
-                  </div>
-                  
-                </div>
-                <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
-                  <img src="https://cdn-icons-png.flaticon.com/128/13864/13864070.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
-                  <div class="card-body">
-                    <p class="card-text">Taskboard </p>
-                  </div>
-          
-                </div>
-                <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
-                  <img src="https://cdn-icons-png.flaticon.com/128/9235/9235252.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Filemanager">
-                  <div class="card-body">
-                    <p class="card-text">Transport </p>
-                  </div>
-                </div>
-                
-                <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
-                  <img src="https://cdn-icons-png.flaticon.com/128/3619/3619368.png" style="height: 2rem; width: 2rem;" class="card-img-top" alt="Library">
-                  <div class="card-body">
-                    <p class="card-text">Hostel </p>
-                  </div>
-                </div>
-                  <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
-                    <img src="https://cdn-icons-png.flaticon.com/128/6611/6611895.png" style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
-                    <div class="card-body">
-                      <p class="card-text">Attendance </p>
+
+                <div class="row row-cols-3 row-cols-md-6 g-4">
+                  <div class="col">
+                    <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+                      <img src="https://cdn-icons-png.flaticon.com/128/2058/2058414.png" style="height: 2rem; width: 2rem; "  class="card-img" alt="Professor">
+                      <div class="card-body">
+                        <h6 class="card-title">Payment</h6>
+                        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                      </div>
                     </div>
                   </div>
-                  
-                <!-- </div> -->
+                  <div class="col">
+                    <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+                      <img src="https://cdn-icons-png.flaticon.com/128/3000/3000409.png" style="height: 2rem; width: 2rem; height: fit-content;"  class="card-img" alt="Contact">
+                      <div class="card-body">
+                        <h6 class="card-title">Noticeboard</h6>
+                        <!-- <p class="card-text">k</p> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+                      <img src="https://cdn-icons-png.flaticon.com/128/13864/13864070.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
+                      <div class="card-body">
+                        <h6 class="card-title">Taskboard</h6>
+                        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+                      <img src="https://cdn-icons-png.flaticon.com/128/9235/9235252.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Filemanager">
+                      <div class="card-body">
+                        <h6 class="card-title">Transport</h6>
+                        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+                      <img src="https://cdn-icons-png.flaticon.com/128/3619/3619368.png" style="height: 2rem; width: 2rem;" class="card-img-top" alt="Library">
+                      <div class="card-body">
+                        <h6 class="card-title">Hostel</h6>
+                        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+                      <img src="https://cdn-icons-png.flaticon.com/128/6611/6611895.png" style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
+                      <div class="card-body">
+                        <h6 class="card-title">Attendance</h6>
+                        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
-           
         <br>
+
+        <div class="charts">
         <div class="chart-container">
-          <canvas id="feesChart" style="margin-left: 200px;"></canvas>
+          <canvas id="feesChart"></canvas>
         </div>
         <script>
           document.addEventListener("DOMContentLoaded", function () {
@@ -461,48 +488,105 @@ a.sidebar-link:hover {
           });
         });
         </script>
+        <div class="chart-container">
+          <canvas id="financeChart"></canvas>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            // Sample data for income and expense
+            const months = ["January", "February", "March", "April", "May", "June"];
+            const incomeData = [5000, 6000, 7000, 8000, 9000, 10000];
+            const expenseData = [2000, 2500, 3000, 3500, 4000, 4500];
+          
+            // Get the canvas element
+            const canvas = document.getElementById("financeChart");
+            const ctx = canvas.getContext("2d");
+          
+            // Create the area chart
+            const financeChart = new Chart(ctx, {
+              type: "line",
+              data: {
+                labels: months,
+                datasets: [
+                  {
+                    label: "Income",
+                    data: incomeData,
+                    fill: true,
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1
+                  },
+                  {
+                    label: "Expense",
+                    data: expenseData,
+                    fill: true,
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1
+                  }
+                ]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          });          
+        </script>
+      </div>
         <br/>
-      <div class="slidebar-flex" >
-        
-       <span>Fees
-            
+      <div class="row row-cols-2 row-cols-md-4 g-4 slidebar-flex" >
+    <div class="col">
+      <span>Fees      
       <div class="contain"><div class="small-red-contain" style=" background-color: red;"></div></div>
       35%
       </span>
+    </div>
+    <div class="col">
       <span>Donation
       <div class="contain"><div class="small-red-contain" style=" background-color: green; width: 80px;"></div></div>
       67%
       </span>
+    </div>
+    <div class="col">
       <span>Income
       <div class="contain"><div class="small-red-contain" style=" background-color: pink; width: 110px;"></div></div>
       87%
       </span>
+    </div>
+    <div class="col">
       <span>Expense
       <div class="contain"><div class="small-red-contain" style=" background-color: purple; width: 56px;"></div></div>
       42%
       </span>
+    </div>
       </div>
             <br>
       <div class="ggrid">
         <div class="examtop">
-          <canvas id="examToppersTable"></canvas>
+          <canvas id="assignTask"></canvas>
         </div>
         <script>
           document.addEventListener("DOMContentLoaded", function () {
             // Sample data for exam toppers
-            const toppersData = [
-              { rollNo: 41, name: "Blair", marks: 199, percentage: 99 },
-              { rollNo: 17, name: "Dan", marks: 197, percentage: 98 },
-              { rollNo: 39, name: "Serena", marks: 197, percentage: 98 },
-              { rollNo: 8, name: "Nate", marks: 194, percentage: 97 }
+            const toppersData = [   
+              { no: 1, Task: "Preparation for cricket team", Assigned_Professores: "Nilesh", status: "0",progress:1 },
+              { no: 2, Task: "Annual function preparation", Assigned_Professores: "Felix", status: 99,progress:1 },
+              { no: 3, Task: "Final year exam paper set", Assigned_Professores: "Aryan", status: 99,progress:1 },
+              { no: 4, Task: "Placement report", Assigned_Professores: "Serana", status: 99,progress:1 },
+              { no: 5, Task: "Fees collection report", Assigned_Professores: "Nate", status: 99,progress:1 },
+              { no: 6, Task: "Library book status", Assigned_Professores: "Blair", status: 99,progress:1 },
             ];
       
             // Get the canvas element
-            const canvas = document.getElementById("examToppersTable");
+            const canvas = document.getElementById("assignTask");
             const ctx = canvas.getContext("2d");
       
             // Set the canvas size
-            canvas.width = 400;
+            canvas.width = 800;
             canvas.height = 200;
       
             // Set the table style
@@ -514,25 +598,28 @@ a.sidebar-link:hover {
             ctx.fillStyle = "black";
       
             // Draw the table headers
-            ctx.fillText("Roll No.", 20, 30);
-            ctx.fillText("Name", 100, 30);
-            ctx.fillText("Marks", 180, 30);
-            ctx.fillText("%Age", 260, 30);
+            ctx.fillText("#", 20, 30);
+            ctx.fillText("Task", 65, 30);
+            ctx.fillText("Assigned Professores", 280, 30);
+            ctx.fillText("status", 450, 30);
+            ctx.fillText("progress", 540, 30);
+
       
             // Draw the table rows
             let y = 50;
             toppersData.forEach((topper, index) => {
-              ctx.fillText(topper.rollNo, 20, y);
-              ctx.fillText(topper.name, 100, y);
-              ctx.fillText(topper.marks, 180, y);
-              ctx.fillText(topper.percentage, 260, y);
+              ctx.fillText(topper.no, 20, y);
+              ctx.fillText(topper.Task, 65, y);
+              ctx.fillText(topper.Assigned_Professores, 280, y);
+              ctx.fillText(topper.status, 450, y);
+              ctx.fillText(topper.progress, 540, y);
               y += 20;
             });
           });
         </script>
-        <div class="newstud">
+        <!-- <div class="newstud">
           <canvas id="newstudTable"></canvas>
-        </div>
+        </div> -->
         <script>
           document.addEventListener("DOMContentLoaded", function () {
             // Sample data for exam toppers
@@ -591,7 +678,7 @@ a.sidebar-link:hover {
 
           // Close sidebar when screen size reduces
           window.addEventListener("resize", function () {
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < 1000) {
               sidebar.classList.remove("expand");
             }
           });
