@@ -5,35 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Admin Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body
         {
           background-color: #F9EFDB;
         }
-        .container
-        {
-            display: grid;
-            gap: 0.3em;
-            grid-template-columns:3fr 8fr;
-            grid-template-rows:none;
-           margin-left:0.2em ;
-           margin-right: 4rem;
-           padding: 0px;
-        }
         
-        .containers
-        {
-          width: auto;
-          height: 1%;
-          margin-left: 16rem;
-          margin-right: 3rem;
-        }
-        .sidebar{
-          height: 100vh;
-          position:fixed;
-          width: 10rem;
-        }
+        
+        
+        
         .flex-column
         {
             height: 100vh;
@@ -123,336 +105,498 @@
 canvas {
   border: 1px solid #ccc;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.wrapper {
+    display: flex;
+    overflow-y: auto;
+    height: 100vh;
+    width: 100%;
+}
+#sidebar {
+    width: 70px;
+    min-width: 70px;
+    z-index: 1000;
+    transition: all .25s ease-in-out;
+    background-color: #0e2238;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar.expand {
+    width: 260px;
+    min-width: 260px;
+}
+
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 1.5rem;
+}
+
+.toggle-btn i {
+    font-size: 1.5rem;
+    color: #FFF;
+}
+
+.sidebar-logo {
+    margin: auto 0;
+}
+
+.sidebar-logo a {
+    color: #FFF;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+    display: none;
+}
+
+.sidebar-nav {
+    padding: 2rem 0;
+    flex: 1 1 auto;
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: #FFF;
+    display: block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i {
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+a.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid #3b7ddd;
+}
+
+.sidebar-item {
+    position: relative;
+}
+
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+    position: absolute;
+    top: 0;
+    left: 70px;
+    background-color: #0e2238;
+    padding: 0;
+    min-width: 15rem;
+    display: none;
+}
+
+#sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
+    display: block;
+    max-height: 15em;
+    width: 100%;
+    opacity: 1;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(-135deg);
+    transition: all .2s ease-out;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+    transform: rotate(45deg);
+    transition: all .2s ease-out;
+}
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: #e9ecef;
+}
+
     </style>
 </head>
 <body>
-    <div class="container">
-      
-
-
-    <div class="sidebar">
-    <div class="d-flex flex-column flex-shrink-0 p-3 " style="width: 230px; background-color: #9DBC98;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <svg class="bi pe-none me-2" width="40" height="30"><use xlink:href="#bootstrap"></use></svg>
-          <span class="fs-4" style="margin-top: 2.5rem;">PVG COET</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-              Payments
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-              Noticeboard
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-              Taskboard
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-              Hostel
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-              Transport
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-              Attendance
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-              Leave
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-              Settings
-            </a>
-          </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="data:image/jpeg;base64,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" alt="" width="38" height="32" class="rounded-circle me-2">
-            <strong>Admin</strong>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
-        </div>
-      </div>
-</div>
-      <div class="containers">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start fixed-top" style="background-color: #979082;">
-          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-          </a>
-  
-          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 ">
-            <li><a href="#" class="nav-link px-2 link-secondary">Pages</a></li>
-            <li><a href="#" class="nav-link px-2 link-body-emphasis">Author</a></li>
-            <li><a href="#" class="nav-link px-2 link-body-emphasis">University</a></li>
-            <li><a href="#" class="nav-link px-2 link-body-emphasis">Profile</a></li>
-          </ul>
-  
-          <form class="col-12 col-lg-auto mb-lg-0 me-lg-3" role="search">
-            <div class="input-group ">
-              <input type="text" class="form-control" placeholder="What you want to find " aria-label="Recipient's username" aria-describedby="basic-addon2">
-              
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Search</button>
-              </div>
-            </div>
-          </form>
-          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="45" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-          </svg>
-          `
-          <div class="dropdown text-end">
-            
-            <ul class="dropdown-menu text-small">
-              <li><a class="dropdown-item" href="#">New project...</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-          </div>
-        </div>
-<br/><br/>
-<br/>
-        <div class="flex-container">
-            <!-- <div class="flex-item"> -->
-          <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
-            <img src="https://cdn-icons-png.flaticon.com/128/2058/2058414.png" style="height: 2rem; width: 2rem; "  class="card-img" alt="Professor">
-            <div class="card-body">
-              <p class="card-text">Payments </p>
-            </div>
-            
-          </div>
-          <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
-            <img src="https://cdn-icons-png.flaticon.com/128/3000/3000409.png" style="height: 2rem; width: 2rem; height: fit-content;"  class="card-img" alt="Contact">
-            <div class="card-body">
-              <p class="card-text">Noticeboard </p>
-            </div>
-            
-          </div>
-          <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
-            <img src="https://cdn-icons-png.flaticon.com/128/13864/13864070.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
-            <div class="card-body">
-              <p class="card-text">Taskboard </p>
-            </div>
-    
-          </div>
-          <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
-            <img src="https://cdn-icons-png.flaticon.com/128/9235/9235252.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Filemanager">
-            <div class="card-body">
-              <p class="card-text">Transport </p>
-            </div>
-          </div>
+      <div class="sidebar">
+        <div class="wrapper">
+            <aside id="sidebar">
+                <div class="d-flex">
+                    <button class="toggle-btn" type="button">
+                        <i class="lni lni-grid-alt"></i>
+                    </button>
+                    <div class="sidebar-logo">
+                        <a href="#">CodzSword</a>
+                    </div>
+                </div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="lni lni-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="lni lni-agenda"></i>
+                            <span>Task</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                            data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                            <i class="lni lni-protection"></i>
+                            <span>Auth</span>
+                        </a>
+                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Login</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Register</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                            data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                            <i class="lni lni-layout"></i>
+                            <span>Multi Level</span>
+                        </a>
+                        <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                                    Two Links
+                                </a>
+                                <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                                    <li class="sidebar-item">
+                                        <a href="#" class="sidebar-link">Link 1</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a href="#" class="sidebar-link">Link 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="lni lni-popup"></i>
+                            <span>Notification</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="lni lni-cog"></i>
+                            <span>Setting</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="sidebar-footer">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-exit"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </aside>
+            <div class="containers">
+              <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">Navbar</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                      </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+      <br/><br/>
+      <br/>
+              <div class="flex-container">
+                  <!-- <div class="flex-item"> -->
+                <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+                  <img src="https://cdn-icons-png.flaticon.com/128/2058/2058414.png" style="height: 2rem; width: 2rem; "  class="card-img" alt="Professor">
+                  <div class="card-body">
+                    <p class="card-text">Payments </p>
+                  </div>
+                  
+                </div>
+                <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
+                  <img src="https://cdn-icons-png.flaticon.com/128/3000/3000409.png" style="height: 2rem; width: 2rem; height: fit-content;"  class="card-img" alt="Contact">
+                  <div class="card-body">
+                    <p class="card-text">Noticeboard </p>
+                  </div>
+                  
+                </div>
+                <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
+                  <img src="https://cdn-icons-png.flaticon.com/128/13864/13864070.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
+                  <div class="card-body">
+                    <p class="card-text">Taskboard </p>
+                  </div>
           
-          <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
-            <img src="https://cdn-icons-png.flaticon.com/128/3619/3619368.png" style="height: 2rem; width: 2rem;" class="card-img-top" alt="Library">
-            <div class="card-body">
-              <p class="card-text">Hostel </p>
-            </div>
-          </div>
-            <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
-              <img src="https://cdn-icons-png.flaticon.com/128/6611/6611895.png" style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
-              <div class="card-body">
-                <p class="card-text">Attendance </p>
-              </div>
-            </div>
+                </div>
+                <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
+                  <img src="https://cdn-icons-png.flaticon.com/128/9235/9235252.png"  style="height: 2rem; width: 2rem;" class="card-img" alt="Filemanager">
+                  <div class="card-body">
+                    <p class="card-text">Transport </p>
+                  </div>
+                </div>
+                
+                <div class="card" style=" text-align: center; height: fit-content; background-color: #EBD9B4;">
+                  <img src="https://cdn-icons-png.flaticon.com/128/3619/3619368.png" style="height: 2rem; width: 2rem;" class="card-img-top" alt="Library">
+                  <div class="card-body">
+                    <p class="card-text">Hostel </p>
+                  </div>
+                </div>
+                  <div class="card" style="text-align: center; height: fit-content; background-color: #EBD9B4;">
+                    <img src="https://cdn-icons-png.flaticon.com/128/6611/6611895.png" style="height: 2rem; width: 2rem;" class="card-img" alt="Holiday">
+                    <div class="card-body">
+                      <p class="card-text">Attendance </p>
+                    </div>
+                  </div>
+                  
+                <!-- </div> -->
+                </div>
+           
+        <br>
+        <div class="chart-container">
+          <canvas id="feesChart" style="margin-left: 200px;"></canvas>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+          // Sample data for fees collection
+          const months = ["January", "February", "March", "April", "May", "June"];
+          const feesData = [500, 700, 600, 900, 800, 1000];
+        
+          // Get the canvas element
+          const canvas = document.getElementById("feesChart");
+          const ctx = canvas.getContext("2d");
+        
+          // Create the bar chart
+          const feesChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: months,
+              datasets: [{
+                label: "Fees Collection",
+                data: feesData,
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        });
+        </script>
+        <br/>
+      <div class="slidebar-flex" >
+        
+       <span>Fees
             
-          <!-- </div> -->
-          </div>
-     
-  <br>
-  <div class="chart-container">
-    <canvas id="feesChart" style="margin-left: 200px;"></canvas>
-  </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    // Sample data for fees collection
-    const months = ["January", "February", "March", "April", "May", "June"];
-    const feesData = [500, 700, 600, 900, 800, 1000];
-  
-    // Get the canvas element
-    const canvas = document.getElementById("feesChart");
-    const ctx = canvas.getContext("2d");
-  
-    // Create the bar chart
-    const feesChart = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: months,
-        datasets: [{
-          label: "Fees Collection",
-          data: feesData,
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          borderColor: "rgba(75, 192, 192, 1)",
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  });
-  </script>
-  <br/>
-<div class="slidebar-flex" >
-  
- <span>Fees
+      <div class="contain"><div class="small-red-contain" style=" background-color: red;"></div></div>
+      35%
+      </span>
+      <span>Donation
+      <div class="contain"><div class="small-red-contain" style=" background-color: green; width: 80px;"></div></div>
+      67%
+      </span>
+      <span>Income
+      <div class="contain"><div class="small-red-contain" style=" background-color: pink; width: 110px;"></div></div>
+      87%
+      </span>
+      <span>Expense
+      <div class="contain"><div class="small-red-contain" style=" background-color: purple; width: 56px;"></div></div>
+      42%
+      </span>
+      </div>
+            <br>
+      <div class="ggrid">
+        <div class="examtop">
+          <canvas id="examToppersTable"></canvas>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            // Sample data for exam toppers
+            const toppersData = [
+              { rollNo: 41, name: "Blair", marks: 199, percentage: 99 },
+              { rollNo: 17, name: "Dan", marks: 197, percentage: 98 },
+              { rollNo: 39, name: "Serena", marks: 197, percentage: 98 },
+              { rollNo: 8, name: "Nate", marks: 194, percentage: 97 }
+            ];
       
-<div class="contain"><div class="small-red-contain" style=" background-color: red;"></div></div>
-35%
-</span>
-<span>Donation
-<div class="contain"><div class="small-red-contain" style=" background-color: green; width: 80px;"></div></div>
-67%
-</span>
-<span>Income
-<div class="contain"><div class="small-red-contain" style=" background-color: pink; width: 110px;"></div></div>
-87%
-</span>
-<span>Expense
-<div class="contain"><div class="small-red-contain" style=" background-color: purple; width: 56px;"></div></div>
-42%
-</span>
-</div>
-      <br>
-<div class="ggrid">
-  <div class="examtop">
-    <canvas id="examToppersTable"></canvas>
-  </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Sample data for exam toppers
-      const toppersData = [
-        { rollNo: 41, name: "Blair", marks: 199, percentage: 99 },
-        { rollNo: 17, name: "Dan", marks: 197, percentage: 98 },
-        { rollNo: 39, name: "Serena", marks: 197, percentage: 98 },
-        { rollNo: 8, name: "Nate", marks: 194, percentage: 97 }
-      ];
-
-      // Get the canvas element
-      const canvas = document.getElementById("examToppersTable");
-      const ctx = canvas.getContext("2d");
-
-      // Set the canvas size
-      canvas.width = 400;
-      canvas.height = 200;
-
-      // Set the table style
-      ctx.fillStyle = "#c0c0ca";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Set the text style
-      ctx.font = "14px Arial";
-      ctx.fillStyle = "black";
-
-      // Draw the table headers
-      ctx.fillText("Roll No.", 20, 30);
-      ctx.fillText("Name", 100, 30);
-      ctx.fillText("Marks", 180, 30);
-      ctx.fillText("%Age", 260, 30);
-
-      // Draw the table rows
-      let y = 50;
-      toppersData.forEach((topper, index) => {
-        ctx.fillText(topper.rollNo, 20, y);
-        ctx.fillText(topper.name, 100, y);
-        ctx.fillText(topper.marks, 180, y);
-        ctx.fillText(topper.percentage, 260, y);
-        y += 20;
-      });
-    });
-  </script>
-  <div class="newstud">
-    <canvas id="newstudTable"></canvas>
-  </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Sample data for exam toppers
-      const toppersData = [
-        { No: 1, name: "Vanessa", Branch: "Mechanical",Date: "27/05/2016" },
-        { No: 2, name: "Jenny", Branch: "Computer",Date: "26/05/2018" },
-        { No: 3, name: "Andrew", Branch: "Printing",Date: "21/05/2018" },
-        { No: 4, name: "Josie", Branch: "Information Technology",Date: "20/04/2019" },
-        { No: 5, name: "Vedant", Branch: "Printing",Date: "24/05/2017" }
-      ];
-
-      // Get the canvas element
-      const canvas = document.getElementById("newstudTable");
-      const ctx = canvas.getContext("2d");
-
-      // Set the canvas size
-      canvas.width = 400;
-      canvas.height = 200;
-
-      // Set the table style
-      ctx.fillStyle = "#c0c0ca";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Set the text style
-      ctx.font = "14px Arial";
-      ctx.fillStyle = "black";
-
-      // Draw the table headers
-      ctx.fillText("No.", 40, 20);
-      ctx.fillText("Name", 130, 20);
-      ctx.fillText("Branch", 210, 20);
-      ctx.fillText("Date", 290, 20);
-
-      // Draw the table rows
-      let y = 50;
-      toppersData.forEach((topper, index) => {
-        ctx.fillText(topper.rollNo, 40, y);
-        ctx.fillText(topper.name, 130, y);
-        ctx.fillText(topper.marks, 210, y);
-        ctx.fillText(topper.percentage, 290, y);
-        y += 30;
-      });
-    });
-  </script>
-</div>      
+            // Get the canvas element
+            const canvas = document.getElementById("examToppersTable");
+            const ctx = canvas.getContext("2d");
       
-  </div>
+            // Set the canvas size
+            canvas.width = 400;
+            canvas.height = 200;
+      
+            // Set the table style
+            ctx.fillStyle = "#c0c0ca";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+            // Set the text style
+            ctx.font = "14px Arial";
+            ctx.fillStyle = "black";
+      
+            // Draw the table headers
+            ctx.fillText("Roll No.", 20, 30);
+            ctx.fillText("Name", 100, 30);
+            ctx.fillText("Marks", 180, 30);
+            ctx.fillText("%Age", 260, 30);
+      
+            // Draw the table rows
+            let y = 50;
+            toppersData.forEach((topper, index) => {
+              ctx.fillText(topper.rollNo, 20, y);
+              ctx.fillText(topper.name, 100, y);
+              ctx.fillText(topper.marks, 180, y);
+              ctx.fillText(topper.percentage, 260, y);
+              y += 20;
+            });
+          });
+        </script>
+        <div class="newstud">
+          <canvas id="newstudTable"></canvas>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            // Sample data for exam toppers
+            const toppersData = [
+              { No: 1, name: "Vanessa", Branch: "Mechanical",Date: "27/05/2016" },
+              { No: 2, name: "Jenny", Branch: "Computer",Date: "26/05/2018" },
+              { No: 3, name: "Andrew", Branch: "Printing",Date: "21/05/2018" },
+              { No: 4, name: "Josie", Branch: "Information Technology",Date: "20/04/2019" },
+              { No: 5, name: "Vedant", Branch: "Printing",Date: "24/05/2017" }
+            ];
+      
+            // Get the canvas element
+            const canvas = document.getElementById("newstudTable");
+            const ctx = canvas.getContext("2d");
+      
+            // Set the canvas size
+            canvas.width = 400;
+            canvas.height = 200;
+      
+            // Set the table style
+            ctx.fillStyle = "#c0c0ca";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+            // Set the text style
+            ctx.font = "14px Arial";
+            ctx.fillStyle = "black";
+      
+            // Draw the table headers
+            ctx.fillText("No.", 40, 20);
+            ctx.fillText("Name", 130, 20);
+            ctx.fillText("Branch", 210, 20);
+            ctx.fillText("Date", 290, 20);
+      
+            // Draw the table rows
+            let y = 50;
+            toppersData.forEach((topper, index) => {
+              ctx.fillText(topper.rollNo, 40, y);
+              ctx.fillText(topper.name, 130, y);
+              ctx.fillText(topper.marks, 210, y);
+              ctx.fillText(topper.percentage, 290, y);
+              y += 30;
+            });
+          });
+        </script>
+      </div>      
+            
+        </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+        <script>
+          const hamBurger = document.querySelector(".toggle-btn");
+          const sidebar = document.querySelector("#sidebar");
 
+          // Close sidebar when screen size reduces
+          window.addEventListener("resize", function () {
+            if (window.innerWidth < 768) {
+              sidebar.classList.remove("expand");
+            }
+          });
 
+          // Open/close sidebar on hamburger button click
+          hamBurger.addEventListener("click", function () {
+            sidebar.classList.toggle("expand");
+          });
+
+          // Expand sidebar by default
+          sidebar.classList.add("expand");
+          </script>
 
 </body>
 </html>
