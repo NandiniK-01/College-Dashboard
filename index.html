@@ -10,7 +10,8 @@
     <style>
         body
         {
-          background-color: #F9EFDB;
+         
+           background-color: #F9EFDB; 
         }
         
         
@@ -63,6 +64,7 @@
         .contain {
             width: 140px;
             height: 8px;
+            
             background-color: #EBD9B4;
             border-radius: 20px; /* Adjust this value to change the roundness of the borders */
         }
@@ -277,10 +279,11 @@ a.sidebar-link:hover {
             <aside id="sidebar">
               <div class="d-flex">
                 <button class="toggle-btn" type="button">
-                  <i class="lni lni-grid-alt"></i>
+                 <i class="grid-alt"> <img src="https://www.pvgcoet.ac.in/wp-content/uploads/2019/06/pvg-logo.jpg" height="60px" width="50px" style="border-radius: 260px;"></i>
+                  <!-- <i class="lni lni-grid-alt"></i> -->
                 </button>
                 <div class="sidebar-logo">
-                  <a href="#">CodzSword</a>
+                  <a href="#">PVG COET</a>
                 </div>
               </div>
               <ul class="sidebar-nav">
@@ -300,7 +303,7 @@ a.sidebar-link:hover {
                   <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                     data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                     <i class="lni lni-protection"></i>
-                    <span>Auth</span>
+                    <span>Author</span>
                   </a>
                   <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
@@ -315,20 +318,35 @@ a.sidebar-link:hover {
                   <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                     data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
                     <i class="lni lni-layout"></i>
-                    <span>Multi Level</span>
+                    <span>Menu</span>
                   </a>
                   <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                       <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
                         data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                        Two Links
+                        Dashboard
                       </a>
                       <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
                         <li class="sidebar-item">
-                          <a href="#" class="sidebar-link">Link 1</a>
+                          <a href="#" class="sidebar-link">Student Management</a>
                         </li>
                         <li class="sidebar-item">
-                          <a href="#" class="sidebar-link">Link 2</a>
+                          <a href="#" class="sidebar-link">Faculty Management</a>
+                        </li>
+                        <li class="sidebar-item">
+                          <a href="#" class="sidebar-link">Course Management</a>
+                        </li>
+                        <li class="sidebar-item">
+                          <a href="#" class="sidebar-link">Admission</a>
+                        </li>
+                        <li class="sidebar-item">
+                          <a href="#" class="sidebar-link">Financials</a>
+                        </li>
+                        <li class="sidebar-item">
+                          <a href="#" class="sidebar-link">Events and Calendar</a>
+                        </li>
+                        <li class="sidebar-item">
+                          <a href="#" class="sidebar-link">Reports</a>
                         </li>
                       </ul>
                     </li>
@@ -357,7 +375,7 @@ a.sidebar-link:hover {
             <div class="containers">
               <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Navbar</a>
+                  <a class="navbar-brand" href="#">Dashboard</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -371,17 +389,25 @@ a.sidebar-link:hover {
                       </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown
+                          Menu
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">About Us</a></li>
+                          <li><a class="dropdown-item" href="#">Academics</a></li>
+                          <li><a class="dropdown-item" href="#">Administration</a></li>
+                          <li><a class="dropdown-item" href="#">Departments</a></li>
+                          <li><a class="dropdown-item" href="#">Students</a></li>
+                          <li><a class="dropdown-item" href="#">Faculty</a></li>
+                          <li><a class="dropdown-item" href="#">Contact Us</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        <a class="nav-link disabled" aria-disabled="true">Announcements</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link " aria-disabled="true">Contact</a>
                       </li>
                     </ul>
                     <form class="d-flex" role="search">
