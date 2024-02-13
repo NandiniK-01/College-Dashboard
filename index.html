@@ -84,7 +84,9 @@
         .examtop{
             height: 10rem;
             width:17rem;
-            /* background-color:grey ; */
+            display: flex;
+            justify-content: center;
+            align-items: center;  /* background-color:grey ; */
         }
         .newstud{
           height: 15rem;
@@ -272,6 +274,7 @@ a.sidebar-link:hover {
     flex-direction: column;
   }
 }
+
     </style>
 </head>
 <body>
@@ -366,7 +369,7 @@ a.sidebar-link:hover {
                 </li>
               </ul>
               <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="login.html" class="sidebar-link">
                   <i class="lni lni-exit"></i>
                   <span>Logout</span>
                 </a>
@@ -590,11 +593,11 @@ a.sidebar-link:hover {
       </span>
     </div>
       </div>
-            <br>
-      <div class="ggrid">
-        <div class="examtop">
+            <br/><br/>
+        <div class="examtop" style="margin-left: 40%;">
           <canvas id="assignTask"></canvas>
         </div>
+        <br/><br/>
         <script>
           document.addEventListener("DOMContentLoaded", function () {
             // Sample data for exam toppers
@@ -614,83 +617,46 @@ a.sidebar-link:hover {
             // Set the canvas size
             canvas.width = 800;
             canvas.height = 200;
+
+            var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, 'rgba(75, 192, 192, 0.2)');
+            gradient.addColorStop(1, 'rgba(75, 192, 192, 0.5)');
       
             // Set the table style
-            ctx.fillStyle = "#c0c0ca";
+            ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
       
             // Set the text style
-            ctx.font = "14px Arial";
+            ctx.font = "bold 16px Arial";
             ctx.fillStyle = "black";
       
             // Draw the table headers
             ctx.fillText("#", 20, 30);
             ctx.fillText("Task", 65, 30);
             ctx.fillText("Assigned Professores", 280, 30);
-            ctx.fillText("status", 450, 30);
+            ctx.fillText("status", 470, 30);
             ctx.fillText("progress", 540, 30);
 
-      
+            ctx.beginPath();
+            ctx.moveTo(20, 40);
+            ctx.lineTo(canvas.width - 20, 40);
+            ctx.stroke();
+
+            var y = 70;  
+
+            ctx.font = "16px Arial";
             // Draw the table rows
-            let y = 50;
+            
             toppersData.forEach((topper, index) => {
               ctx.fillText(topper.no, 20, y);
               ctx.fillText(topper.Task, 65, y);
               ctx.fillText(topper.Assigned_Professores, 280, y);
-              ctx.fillText(topper.status, 450, y);
+              ctx.fillText(topper.status, 470, y);
               ctx.fillText(topper.progress, 540, y);
               y += 20;
             });
           });
-        </script>
-        <!-- <div class="newstud">
-          <canvas id="newstudTable"></canvas>
-        </div> -->
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            // Sample data for exam toppers
-            const toppersData = [
-              { No: 1, name: "Vanessa", Branch: "Mechanical",Date: "27/05/2016" },
-              { No: 2, name: "Jenny", Branch: "Computer",Date: "26/05/2018" },
-              { No: 3, name: "Andrew", Branch: "Printing",Date: "21/05/2018" },
-              { No: 4, name: "Josie", Branch: "Information Technology",Date: "20/04/2019" },
-              { No: 5, name: "Vedant", Branch: "Printing",Date: "24/05/2017" }
-            ];
-      
-            // Get the canvas element
-            const canvas = document.getElementById("newstudTable");
-            const ctx = canvas.getContext("2d");
-      
-            // Set the canvas size
-            canvas.width = 400;
-            canvas.height = 200;
-      
-            // Set the table style
-            ctx.fillStyle = "#c0c0ca";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-            // Set the text style
-            ctx.font = "14px Arial";
-            ctx.fillStyle = "black";
-      
-            // Draw the table headers
-            ctx.fillText("No.", 40, 20);
-            ctx.fillText("Name", 130, 20);
-            ctx.fillText("Branch", 210, 20);
-            ctx.fillText("Date", 290, 20);
-      
-            // Draw the table rows
-            let y = 50;
-            toppersData.forEach((topper, index) => {
-              ctx.fillText(topper.rollNo, 40, y);
-              ctx.fillText(topper.name, 130, y);
-              ctx.fillText(topper.marks, 210, y);
-              ctx.fillText(topper.percentage, 290, y);
-              y += 30;
-            });
-          });
-        </script>
-      </div>      
+        </script>      
             
         </div>
         </div>
