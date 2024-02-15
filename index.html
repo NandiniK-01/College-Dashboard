@@ -274,7 +274,11 @@ a.sidebar-link:hover {
     flex-direction: column;
   }
 }
-
+@media (max-width: 1000px) {
+  .examtop {
+    margin-left: 20px;
+  }
+}
     </style>
 </head>
 <body>
@@ -615,8 +619,16 @@ a.sidebar-link:hover {
             const ctx = canvas.getContext("2d");
       
             // Set the canvas size
-            canvas.width = 800;
+            
             canvas.height = 200;
+
+           
+            if (window.innerWidth < 1000){
+              canvas.width=500;
+            }
+           else{
+            canvas.width=640;
+           }
 
             var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             gradient.addColorStop(0, 'rgba(75, 192, 192, 0.2)');
@@ -656,6 +668,20 @@ a.sidebar-link:hover {
               y += 20;
             });
           });
+          // Add media query for adjusting the height and width
+    window.addEventListener("resize", function () {
+        const canvas = document.getElementById("assignTask");
+        const ctx = canvas.getContext("2d");
+
+        if (window.innerWidth < 1000) {
+            canvas.width = 500;
+        } else {
+            canvas.width = 640;
+        }
+
+        // Redraw the table based on the new canvas width
+        // Include the code for drawing the table rows here
+    });
         </script>      
             
         </div>
