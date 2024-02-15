@@ -87,6 +87,12 @@
             display: flex;
             justify-content: center;
             align-items: center;  /* background-color:grey ; */
+            margin-left: 40%;
+          }
+        @media (max-width: 1000px) {
+          .examtop {
+            margin-left: 20%;
+          }
         }
         .newstud{
           height: 15rem;
@@ -274,11 +280,7 @@ a.sidebar-link:hover {
     flex-direction: column;
   }
 }
-@media (max-width: 1000px) {
-  .examtop {
-    margin-left: 20px;
-  }
-}
+
     </style>
 </head>
 <body>
@@ -598,7 +600,7 @@ a.sidebar-link:hover {
     </div>
       </div>
             <br/><br/>
-        <div class="examtop" style="margin-left: 40%;">
+        <div class="examtop" >
           <canvas id="assignTask"></canvas>
         </div>
         <br/><br/>
@@ -613,76 +615,73 @@ a.sidebar-link:hover {
               { no: 5, Task: "Fees collection report", Assigned_Professores: "Nate", status: 99,progress:1 },
               { no: 6, Task: "Library book status", Assigned_Professores: "Blair", status: 99,progress:1 },
             ];
-      
+
             // Get the canvas element
             const canvas = document.getElementById("assignTask");
             const ctx = canvas.getContext("2d");
-      
-            // Set the canvas size
-            
-            canvas.height = 200;
 
-           
-            if (window.innerWidth < 1000){
-              canvas.width=500;
-            }
-           else{
-            canvas.width=640;
-           }
+            // Function to draw the table
+            const drawTable = () => {
+              // Clear the canvas
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            gradient.addColorStop(0, 'rgba(75, 192, 192, 0.2)');
-            gradient.addColorStop(1, 'rgba(75, 192, 192, 0.5)');
-      
-            // Set the table style
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-            // Set the text style
-            ctx.font = "bold 16px Arial";
-            ctx.fillStyle = "black";
-      
-            // Draw the table headers
-            ctx.fillText("#", 20, 30);
-            ctx.fillText("Task", 65, 30);
-            ctx.fillText("Assigned Professores", 280, 30);
-            ctx.fillText("status", 470, 30);
-            ctx.fillText("progress", 540, 30);
+              // Set the canvas size
+              canvas.height = window.innerHeight * 0.26; // 80% of window height
+              canvas.width = window.innerWidth * 0.43; 
 
-            ctx.beginPath();
-            ctx.moveTo(20, 40);
-            ctx.lineTo(canvas.width - 20, 40);
-            ctx.stroke();
+              var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+              gradient.addColorStop(0, 'rgba(75, 192, 192, 0.2)');
+              gradient.addColorStop(1, 'rgba(75, 192, 192, 0.5)');
 
-            var y = 70;  
+              // Set the table style
+              ctx.fillStyle = gradient;
+              ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.font = "16px Arial";
-            // Draw the table rows
-            
-            toppersData.forEach((topper, index) => {
-              ctx.fillText(topper.no, 20, y);
-              ctx.fillText(topper.Task, 65, y);
-              ctx.fillText(topper.Assigned_Professores, 280, y);
-              ctx.fillText(topper.status, 470, y);
-              ctx.fillText(topper.progress, 540, y);
-              y += 20;
-            });
+              // Set the text style
+              ctx.font = "bold " + canvas.width * 0.02 + "px Arial"; // Adjust font size based on canvas width
+              ctx.fillStyle = "black";
+
+              const positions = [ 
+                canvas.width * 0.05, // #
+                canvas.width * 0.15, // Task
+                canvas.width * 0.45, // Assigned Professores
+                canvas.width * 0.70, // status
+                canvas.width * 0.85  // progress
+              ];
+
+              // Draw the table headers
+              ctx.fillText("#", positions[0], 30);
+              ctx.fillText("Task", positions[1], 30);
+              ctx.fillText("Assigned Professores", positions[2], 30);
+              ctx.fillText("status", positions[3], 30);
+              ctx.fillText("progress", positions[4], 30);
+
+              ctx.beginPath();
+              ctx.moveTo(20, 40);
+              ctx.lineTo(canvas.width - 20, 40);
+              ctx.stroke();
+
+              var y = 70;  
+
+              ctx.font = canvas.width * 0.02 + "px Arial";
+              // Draw the table rows
+              toppersData.forEach((topper, index) => {
+                ctx.fillText(topper.no, positions[0], y);
+                ctx.fillText(topper.Task, positions[1], y);
+                ctx.fillText(topper.Assigned_Professores, positions[2], y);
+                ctx.fillText(topper.status, positions[3], y);
+                ctx.fillText(topper.progress, positions[4], y);
+                y += 20;
+              });
+            };
+
+            // Draw the table initially
+            drawTable();
+
+            // Redraw the table when the window is resized
+            window.addEventListener('resize', drawTable);
           });
-          // Add media query for adjusting the height and width
-    window.addEventListener("resize", function () {
-        const canvas = document.getElementById("assignTask");
-        const ctx = canvas.getContext("2d");
-
-        if (window.innerWidth < 1000) {
-            canvas.width = 500;
-        } else {
-            canvas.width = 640;
-        }
-
-        // Redraw the table based on the new canvas width
-        // Include the code for drawing the table rows here
-    });
-        </script>      
+        </script>   
             
         </div>
         </div>
