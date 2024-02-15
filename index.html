@@ -280,7 +280,22 @@ a.sidebar-link:hover {
     flex-direction: column;
   }
 }
+.navbar {
+  background-color: #152743;
+  color: #FFF;
+}
+::placeholder { 
+  color: white;
+  opacity: 1; 
+}
 
+:-ms-input-placeholder { 
+  color: white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
     </style>
 </head>
 <body>
@@ -382,22 +397,22 @@ a.sidebar-link:hover {
               </div>
             </aside>
             <div class="containers">
-              <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #EBD9B4;">
+              <nav class="navbar navbar-expand-lg bg-body-">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Dashboard</a>
+                  <a class="navbar-brand" href="#" style="color: #FFF;">Dashboard</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#" style="color: #FFF;">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="#" style="color: #FFF;">Link</a>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #FFF;">
                           Menu
                         </a>
                         <ul class="dropdown-menu">
@@ -413,15 +428,15 @@ a.sidebar-link:hover {
                         </ul>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Announcements</a>
+                        <a class="nav-link disabled" aria-disabled="true" style="color: #FFF;">Announcements</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link " aria-disabled="true">Contact</a>
+                        <a class="nav-link " aria-disabled="true" style="color: #FFF;">Contact</a>
                       </li>
                     </ul>
                     <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="background-color: #152743;">
+                      <button class="btn btn-outline-success" type="submit" style="color: #FFF;">Search</button>
                     </form>
                   </div>
                 </div>
@@ -627,7 +642,7 @@ a.sidebar-link:hover {
 
               // Set the canvas size
               canvas.height = window.innerHeight * 0.26; // 80% of window height
-              canvas.width = window.innerWidth * 0.43; 
+              canvas.width = window.innerWidth * 0.5; 
 
               var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
               gradient.addColorStop(0, 'rgba(75, 192, 192, 0.2)');
@@ -638,7 +653,7 @@ a.sidebar-link:hover {
               ctx.fillRect(0, 0, canvas.width, canvas.height);
 
               // Set the text style
-              ctx.font = "bold " + canvas.width * 0.0233 + "px Arial"; // Adjust font size based on canvas width
+              ctx.font = "bold " + canvas.width * 0.025 + "px Arial"; // Adjust font size based on canvas width
               ctx.fillStyle = "black";
 
               const positions = [ 
@@ -663,7 +678,7 @@ a.sidebar-link:hover {
 
               var y = 70;  
 
-              ctx.font = canvas.width * 0.024 + "px Arial";
+              ctx.font = canvas.width * 0.0245 + "px Arial";
               // Draw the table rows
               toppersData.forEach((topper, index) => {
                 ctx.fillText(topper.no, positions[0], y);
