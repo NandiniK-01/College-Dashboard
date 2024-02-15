@@ -263,7 +263,7 @@ a.sidebar-link:hover {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1rem;
-  background-color: #e9ecef;
+  background-color: #EBD9B4;
 }
 
 .charts {
@@ -382,7 +382,7 @@ a.sidebar-link:hover {
               </div>
             </aside>
             <div class="containers">
-              <nav class="navbar navbar-expand-lg bg-body-tertiary">
+              <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #EBD9B4;">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="#">Dashboard</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -638,14 +638,14 @@ a.sidebar-link:hover {
               ctx.fillRect(0, 0, canvas.width, canvas.height);
 
               // Set the text style
-              ctx.font = "bold " + canvas.width * 0.02 + "px Arial"; // Adjust font size based on canvas width
+              ctx.font = "bold " + canvas.width * 0.0233 + "px Arial"; // Adjust font size based on canvas width
               ctx.fillStyle = "black";
 
               const positions = [ 
                 canvas.width * 0.05, // #
                 canvas.width * 0.15, // Task
                 canvas.width * 0.45, // Assigned Professores
-                canvas.width * 0.70, // status
+                canvas.width * 0.74, // status
                 canvas.width * 0.85  // progress
               ];
 
@@ -663,7 +663,7 @@ a.sidebar-link:hover {
 
               var y = 70;  
 
-              ctx.font = canvas.width * 0.02 + "px Arial";
+              ctx.font = canvas.width * 0.024 + "px Arial";
               // Draw the table rows
               toppersData.forEach((topper, index) => {
                 ctx.fillText(topper.no, positions[0], y);
